@@ -43,7 +43,7 @@ function Header() {
                             Home
                         </Link>
                     </Typography>
-                    {localStorage.getItem('user')
+                    {user
                         ? <>
                             {user
                                 ? <Avatar src={`${user.avatar}`} />

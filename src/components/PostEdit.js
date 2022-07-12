@@ -77,7 +77,7 @@ function EditPost() {
         )
             .then(res => {
                 if (res.ok) {
-                    navigate(`/album/${post.album}`)
+                    navigate(`/artist/${post.artist}/album/${post.album}`)
                     return res.json()
                 } else {
                     statusCodeToErr(res)
