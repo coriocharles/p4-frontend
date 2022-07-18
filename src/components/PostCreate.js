@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import axiosInstance from '../axios'
-
-function NewPost() {
+import { Rating } from '@mui/material'
+function NewPost({albumInfo}) {
     let navigate = useNavigate()
     const url = 'http://localhost:8000/api/posts/'
     const {albumid, artistid} = useParams()
@@ -13,11 +13,15 @@ function NewPost() {
         published: "2022-07-06T01:13:59Z",
         content: '',
         author: Number(localStorage.getItem('id')),
-        status: ''
+        status: '',
+        rating: null
     })
     let token = localStorage.getItem('access_token')
     const handleChange = (event) => {
-        setNewPost({...newPost, [event.target.id]: event.target.value })
+        if (event.target.name === "rating") {
+            setNewPost({ ...newPost, [event.target.name]: Number(event.target.value) })
+        } else {
+        setNewPost({...newPost, [event.target.id]: event.target.value })}
         console.log(newPost)
     }
 
@@ -29,7 +33,6 @@ function NewPost() {
 
     const statusCodeToErr = (responseObj) => {
         setNetworkErrMsg(`Network Error of code: ${responseObj.status}`)
-        // TODO - console log the err message
     }
     const clientFormValidation = (newPost) => {
         const blankFields = Object.entries(newPost)
@@ -63,9 +66,8 @@ function NewPost() {
         )
             .then(res => {
                 if (res.ok) {
-                    navigate(`/artist/${Number(artistid)}/album/${Number(albumid)}`)
+                    navigate(`/artist/${albumInfo.artist_name}/album/${albumInfo.name}`)
                     return res.json()
-
                 } else {
                     statusCodeToErr(res)
                     return Promise.resolve(null)
@@ -74,6 +76,7 @@ function NewPost() {
             .then(data => {
                 if (!data) {
                     console.log(`problem with network request: ${networkErrMsg}`)
+                    navigate(`/artist/${albumInfo.artist_name}/album/${albumInfo.name}`)
                 } else {
 
                     console.log(data)
@@ -89,6 +92,12 @@ function NewPost() {
         <>
         write review for {albumid} by {artistid}
             <form onSubmit={handleSubmit}>
+                <Rating
+                    id="rating"
+                    name="rating"
+                    value={newPost.rating}
+                    onChange={handleChange}
+                />
                 <label htmlFor="title">Title</label>
                 <input type="text" id="title" onChange={handleChange} value={newPost.title} /><br></br>
                 <label htmlFor="content">Your Review</label><br></br>

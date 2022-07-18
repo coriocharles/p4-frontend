@@ -7,8 +7,8 @@ import axios from 'axios'
 
 function Genres() {
     const [genres, setGenres] = useState(null)
-    const { id } = useParams()
-    const url = `http://localhost:8000/api/genres`
+    const { name } = useParams()
+    const url = `http://localhost:8000/api/genres/`
     console.log(url)
     function componentDidMount() {
         axios.get(url)
@@ -33,7 +33,7 @@ function Genres() {
                         return (
                             <div>
                                 <br></br>
-                                <Link to={`/genres/${genre.id}`}>{genre.name}</Link>
+                                <Link to={`/genres/${genre.name}`}>{genre.name}</Link>
                             </div>
                         )
                     })

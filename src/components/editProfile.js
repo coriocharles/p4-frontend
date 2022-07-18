@@ -48,7 +48,6 @@ function EditProfile() {
     const handleSubmit = (e) => {
         e.preventDefault()
         let formData = new FormData();
-        formData.append('email', user.email);
         formData.append('user_name', user.user_name)
         formData.append('password', user.password)
         formData.append('avatar', userAvatar.avatar[0])
@@ -78,7 +77,7 @@ function EditProfile() {
             .then(data => {
                 if (!data) {
                     console.log(`problem with network request: ${networkErrMsg}`)
-
+                    localStorage.setItem('user', user.user_name)
                 } else {
 
                     console.log(data)

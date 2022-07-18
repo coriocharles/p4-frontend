@@ -1,28 +1,21 @@
 import React from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Card, CardContent, CardMedia, Grid, Typography, Container } from '@mui/material'
+import { Card, CardContent, CardMedia, Grid, Typography, Container, Rating } from '@mui/material'
 import axios from 'axios'
-
-
-function Album() {
+function Album({setAlbumInfo}) {
     const [album, setAlbum] = useState(null)
     const { id } = useParams()
     const url = `http://localhost:8000/api/albums/${id}`
-    let userurl = 'http://localhost:8000/api/user/'
-    const [users, setusers] = useState(null)
-    console.log(url)
     function componentDidMount() {
         axios.get(url)
             .then(res => {
                 const data = res.data
                 setAlbum(data)
+                setAlbumInfo(data)
+                console.log(data)
             })
-        axios.get(userurl)
-            .then(res => {
-                const data = res.data
-                setusers(data)
-            })
+        
     }
 
     useEffect(() =>
@@ -40,7 +33,6 @@ function Album() {
     let token = localStorage.getItem('access_token')
     const handleSubmit = (e) => {
         let post_id = e.target.id
-        console.log(post_id)
         e.preventDefault()
         console.log(`fetching with token ${token}`)
         setNetworkErrMsg(null)
@@ -77,16 +69,23 @@ function Album() {
     
     return (
         <div>
-            {!album || !users
+            {!album
                 ? "no data yet"
                 : <div>
-                    <h1>{album.name}</h1>
-                    <Link to={`/artist/${album.artist}`}>{album.artist}</Link>
+                    <h1>{album.name} by <Link to={`/artist/${album.artist_name}`}>{album.artist_name}</Link></h1>
+                    <Rating
+                        precision={0.5}
+                        defaultValue={1}
+                        name="simple-controlled"
+                        value={album.avg_rating}
+                        
+                    />
                     {album.posts.map(post => {
                         return(
                             <div>
                             <h1>{post.title} by {post.author_name}</h1>
                             <p>{post.content}</p>
+                            <p>posting on {String(post.published).slice(0,10)}</p>
                                 {!localStorage.getItem('user')
                                     ? ""
                                     : `${post.author_name}` === localStorage.getItem('user').replace(/['"]+/g, '')
@@ -109,6 +108,7 @@ function Album() {
                 </div>
                 
             }
+        
         </div>
     )
 }

@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import axiosInstance from '../axios';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 //MaterialUI
 import { Container, Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Typography } from '@mui/material';
 
 
 
 
-export default function Login() {
+export default function Login({ setUserSignedIn, setUserAvatar}) {
     const navigate = useNavigate();
+    const [flag, setFlag] = useState(null)
     const initialFormData = Object.freeze({
         user_name: '',
         password: '',
@@ -23,10 +25,9 @@ export default function Login() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
-
+        try { await
         axiosInstance
             .post(`token/`, {
                 user_name: formData.user_name,
@@ -38,20 +39,55 @@ export default function Login() {
                 localStorage.setItem('refresh_token', res.data.refresh);
                 localStorage.setItem('user', JSON.stringify(formData.user_name));
                 localStorage.setItem('id', res.data.id);
+                
+                setUserSignedIn(true)
                 axiosInstance.defaults.headers['Authorization'] =
                     'JWT ' + localStorage.getItem('access_token');
                 navigate('/');
                 //console.log(res);
                 //console.log(res.data);
-            });
+                let url = `http://localhost:8000/api/user/${res.data.id}`
+
+                axios.get(url)
+                    .then(res => {
+                        const data = res.data
+                        setUserAvatar(data.avatar)
+                        console.log(data.avatar)
+                    })
+            })
+            
+
+            
+            }
+            catch(error)  {
+                console.log(error)
+                setFlag(1)
+            }
+    ;
     };
 
 
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs" justify="center" alignItems="center">
             <CssBaseline />
             <div>
-                <Avatar></Avatar>
+                
+                
+                <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems="center"
+                    justifyContent="center"
+                    style={{ minHeight: '6vh' }}
+                >
+
+                    <Grid item xs={3}>
+
+                        <Avatar />
+                    </Grid>
+
+                </Grid> 
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
@@ -80,6 +116,9 @@ export default function Login() {
                         autoComplete="current-password"
                         onChange={handleChange}
                     />
+                    {!flag
+                        ?""
+                        : <p>Invalid Username or Password</p>}
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
                         label="Remember me"
@@ -100,7 +139,7 @@ export default function Login() {
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link href="/register" variant="body2">
                                 {"Don't have an account? Sign Up"}
                             </Link>
                         </Grid>

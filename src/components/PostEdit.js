@@ -7,17 +7,6 @@ function EditPost() {
     const {postid} = useParams()
     const url = `http://localhost:8000/api/posts/${postid}`
     const [post, setPost] = useState(null)
-    // const [newPost, setnewPost] = useState({
-    //     title: '',
-    //     artist: 1,
-    //     album: 1,
-    //     published: "",
-    //     content: '',
-    //     author: 1,
-    //     status: ''
-    // })
-
-
     let token = localStorage.getItem('access_token')
     
     const handleChange = (event) => {
@@ -30,7 +19,6 @@ function EditPost() {
             .then(res => {
                 const data = res.data
                 setPost(data)
-                // setnewPost({ ...newPost, [newPost.artist]: post.value, [newPost.album]: post.value, [newPost.published]: post.value, [newPost.author]: post.value })
             })
     }
     
@@ -41,12 +29,9 @@ function EditPost() {
 
 
     const [networkErrMsg, setNetworkErrMsg] = useState(null)
-
     const [clientErrMsg, setClientErrMsg] = useState(null)
-
     const statusCodeToErr = (responseObj) => {
         setNetworkErrMsg(`Network Error of code: ${responseObj.status}`)
-        // TODO - console log the err message
     }
     const clientFormValidation = (post) => {
         const blankFields = Object.entries(post)
@@ -77,7 +62,7 @@ function EditPost() {
         )
             .then(res => {
                 if (res.ok) {
-                    navigate(`/artist/${post.artist}/album/${post.album}`)
+                    navigate(`/artist/${post.artist_name}/album/${post.album_name}`)
                     return res.json()
                 } else {
                     statusCodeToErr(res)
@@ -87,20 +72,12 @@ function EditPost() {
             .then(data => {
                 if (!data) {
                     console.log(`problem with network request: ${networkErrMsg}`)
+                    navigate(`/artist/${post.artist_name}/album/${post.album_name}`)
                 } else {
-
                     console.log(data)
-
-                    // call to refresh the list
-                    // set RefreshCounter(refreshCounter + 1)
                 }
             })
     }
-
-
-
-
-
 
 
     return (

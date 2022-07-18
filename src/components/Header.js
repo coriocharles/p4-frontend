@@ -24,73 +24,7 @@ function Header() {
 
     return(
     <React.Fragment>
-        <CssBaseline />
-            <AppBar position="static"
-                color="default"
-                elevation={0}>
-            <Toolbar>
-                    <Typography
-                        variant="h6"
-                        color="inherit"
-                        noWrap
-                    >
-                        <Link
-                            
-                            href="/"
-                            underline="none"
-                            color="textPrimary"
-                        >
-                            Home
-                        </Link>
-                    </Typography>
-                    {user
-                        ? <>
-                            {user
-                                ? <Avatar src={`${user.avatar}`} />
-                            : ""}
-                            <Button
-                                href="/editprofile"
-                                color="primary"
-                                variant="outlined"
-                                to={`/editprofile`}
-                            >
-                                Edit Profile
-                            </Button><Button
-                            href="/logout"
-                            color="primary"
-                            variant="outlined"
-                            to="/logout"
-                        >
-                            Logout {localStorage.getItem('user')}
-                        </Button>
-                            
-                        </>
-                        
-                        : <div>
-                            <nav>
-                                <Link
-                                    color="textPrimary"
-                                    href="/register"
-                                    to="/register"
-                                >
-                                    Register
-                                </Link>
-                            </nav>
-                            <Button
-                                href="/login"
-                                color="primary"
-                                variant="outlined"
-                                to="/login"
-                            >
-                                Login
-                            </Button>
-                        </div>
-
-                    }
-                    
-                    
-            </Toolbar>
-        </AppBar>
+        
     </React.Fragment>)
 }
 

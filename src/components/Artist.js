@@ -1,9 +1,8 @@
 import React from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Card, CardContent, CardMedia, Grid, Typography, Container } from '@mui/material'
+import { Rating } from '@mui/material'
 import axios from 'axios'
-
 
 function Artist(){
     const [artist, setArtist] = useState(null)
@@ -15,6 +14,7 @@ function Artist(){
             .then(res => {
                 const data = res.data
                 setArtist(data)
+                localStorage.setItem('artist', data.id)
             })
     }
 
@@ -29,19 +29,22 @@ function Artist(){
                 ? "no data yet"
                 : <div>
                     <h1>{artist.name}</h1>
-                    <h1>{artist.id}</h1>
                     {artist.albums.map(album => {
                         return (
                             <div>
                             <br></br>
-                                <Link to={`/artist/${artist.id}/album/${album.id}`}>{album.name}</Link>
-                            
+                                <Link to={`/artist/${artist.name}/album/${album.name}`}>{album.name}</Link>
+                                <p>{album.posts.length} Reviews</p>
                                 <img src={album.image} width="50" height="70" alt="broken" />
                             </div>
                         )
                     })
                     }
-                    <Link to={`/artist/${artist.id}/newalbum`}>Enter new album</Link>
+                    
+                    {!localStorage.getItem('user')
+                        ? "Please Sign in to add an album"
+                        : <Link to={`/artist/${artist.name}/newalbum`}>Enter new album</Link>
+                    }
                 </div>
             }
         </div>

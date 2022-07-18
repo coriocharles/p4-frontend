@@ -51,10 +51,24 @@ export default function Register() {
 
 
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs" justify="center" alignItems="center">
             <CssBaseline />
             <div>
-                <Avatar ></Avatar>
+                <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems="center"
+                    justifyContent="center"
+                    style={{ minHeight: '6vh' }}
+                >
+
+                    <Grid item xs={3}>
+
+                        <Avatar />
+                    </Grid>
+
+                </Grid> 
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>
@@ -115,7 +129,7 @@ export default function Register() {
                     </Button>
                     <Grid container justify="flex-end">
                         <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link href="/login" variant="body2">
                                 Already have an account? Sign in
                             </Link>
                         </Grid>

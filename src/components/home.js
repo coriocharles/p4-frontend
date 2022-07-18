@@ -4,7 +4,10 @@ function Homepage() {
     return(
         <>
         Welcome!<br></br>
-            <Link to={`/artist/1`}>LINK TO GROUPER</Link>
+            <Link to={`/artist/Grouper`}>LINK TO GROUPER</Link><br></br>
+            <Link to={`/genres`}>Genres</Link><br></br>
+
+            <Link to={`/artists`}>Artists</Link>
         </>
     )
 }
