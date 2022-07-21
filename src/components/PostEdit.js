@@ -47,6 +47,7 @@ function EditPost() {
         e.preventDefault()
         console.log(`fetching with token ${token}`)
         setNetworkErrMsg(null)
+        console.log(post)
         if (!clientFormValidation(post)) {
             return
         }

@@ -1,10 +1,13 @@
 import React from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Card, CardContent, CardMedia, Grid, Typography, Container } from '@mui/material'
 import axios from 'axios'
-
-
+import { Container, Avatar, Button, CssBaseline, Grid, Typography, Rating, Box } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import { CardActionArea } from '@mui/material'
 function GenreAlbums() {
     const [genre, setGenre] = useState(null)
     const { name } = useParams()
@@ -27,20 +30,56 @@ function GenreAlbums() {
         <div>
             {!genre
                 ? "no data yet"
-                : <div>
-                    <h1>{genre.name} Albums</h1>
+                : <div style={{ margin: "auto", position: 'absolute', width: '100vw' }}>
+                    <h1>{name} Albums</h1>
+                    <div style={{ display: "flex" }}>
+
                     {genre.album_list.map(album => {
                         return (
-                            <div>
+                            <div style={{ display: "flex", margin: "auto", overflow: 'hidden'}}>
+                                <Card sx={{ minWidth: 275 }} style={{ padding: '30px', margin: '10px', height: '40vh', backgroundColor: '#1F1B24', color: 'white' }}>
+                                    <CardActionArea href={`/artist/${album.artist_name}/album/${album.name}`}>
+                                    <CardMedia
+                                        component="img"
+                                        height="200"
+                                        image={`${album.image}`}
+                                        alt="green iguana"
+                                    />
+                                    <CardContent>
+                                        {album.genre.map(genre => {
+                                            return (
+                                                <Typography sx={{ fontSize: 14 }} color="gray" gutterBottom>
+                                                    {genre.name}
+                                                </Typography>
+                                            )
+                                        })}
+                                        <Typography variant="h5" component="div">
+                                            {album.name}
+                                        </Typography>
+                                        
 
-                                <h1>{album.name} by {album.artist_name}</h1>
+                                    </CardContent>
+                                    <CardActions>
+                                        
+                                        
+                                        {album.genre.map(genre => {
+                                            return (
+                                                <Typography sx={{ fontSize: 14 }} color="gray" gutterBottom>
+                                                    {genre}
+                                                </Typography>
+                                            )
+                                        })}
+                                    </CardActions>
+                                    </CardActionArea>
+                                </Card><br></br>
                                 <br></br>
-                                <Link to={`/artist/${album.artist_name}/album/${album.name}`}>{album.name}</Link> by <Link to={`/artist/${album.artist_name}`}>{album.artist_name}</Link>
+
+
                             </div>
                         )
                     })
-                    }
-                </div>
+                            } 
+                </div></div>
             }
         </div>
     )

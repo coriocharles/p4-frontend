@@ -27,6 +27,7 @@ import SearchGenre from './components/SearchGenre';
 import axios from 'axios';
 import GenreAlbums from './components/GenreAlbums';
 import Artists from './components/Artists';
+import UserPage from './components/User';
 function App() {
   const [avatar, setUserAvatar] = useState(null)
   const [userSignedIn, setUserSignedIn] = useState(null)
@@ -79,35 +80,42 @@ function App() {
   
 
   return (
-    <div className="App">
-      <CssBaseline />
+    <div className="App" style={{ backgroundColor: "#121212", color: 'white' }}>
       <Link
-        style={{fontSize:"50px"}}
+        style={{
+          fontSize: "30px", 
+}}
         href="/"
         underline="none"
-        color="textPrimary"
+        color="#fff"
       >
         Tune
       </Link>
       <AppBar position="static"
         color="default"
-        elevation={0}>
+        elevation={0}
+        style={{ margin: '10px', backgroundColor: "#1F1B24"}}
+        >
+        
+        <div style={{ display: 'flex', backgroundColor: "#hdtb" }}>
         <Toolbar>
+            <div style={{ display: 'flex', float: 'left', width: '30vw', backgroundcolor: "#2b2b2b" }}>
           <Typography
             variant="h6"
             color="inherit"
             noWrap
           >
-            <Link
+            {/* <Link
 
               href="/"
               underline="none"
               color="textPrimary"
+              style={{margin: '5px'}}
             >
               Home
-            </Link>
+            </Link> */}
           </Typography>
-          <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} style={{ display: "flex" }}>
             <input type="text" id="search" onChange={handleChange} value={data.search} /><br></br>
             <select type="text" id="category" onChange={handleChange} value={data.category}>
               <option value="artists">Artist</option>
@@ -116,31 +124,45 @@ function App() {
             </select>
             <input type="submit" className="btn btn-danger" value="search" />
           </form>
+          </div>
+            <div style={{ display: 'flex', float: 'center', width: '35vw', backgroundcolor: "#2b2b2b", textAlign: 'right'}}>
+              <Button style={{margin: '0 auto'}}
+                href={`/artists`}
+                color="secondary"
+                to={`/artists`}
+              >Artists</Button>
+                <Button
+                style={{ margin: '0 auto' }}
+                href={`/genres`}
+                  color="secondary"
+                  to={`/genres`}
+                > Genres
+              </Button>
+            </div>
+          <div style={{display: 'flex', float: 'right', width: '30vw', textAlign:'right', justifyContent:'right'}}>
           {userSignedIn
             ? <>
               {avatar
-                ? <Avatar src={`${avatar}`} />
+                ? <Avatar src={`${avatar}`} style={{margin: '5px'}}/>
                 : <Avatar />} 
               <Button
-                href="/editprofile"
+                href={`/users/${localStorage.getItem('id')}`}
                 color="primary"
-                variant="outlined"
-                to={`/editprofile`}
+                to={`/users/${localStorage.getItem('id')}`}
               >
-                Edit Profile
+               {localStorage.getItem('user').replace(/['"]+/g, '')}
               </Button><Button
                 href="/logout"
-                color="primary"
-                variant="outlined"
+                color="error"
                 to="/logout"
               >
-                Logout {localStorage.getItem('user')}
+                Logout
               </Button>
 
             </>
 
-            : <div>
-              <nav>
+            : <div style={{display: 'flex'}}>
+                  <nav style={{ margin: '10px' }}>
                 <Link
                   color="textPrimary"
                   href="/register"
@@ -160,9 +182,10 @@ function App() {
             </div>
 
             }
-
+          </div>
 
         </Toolbar>
+      </div>
       </AppBar>
       
       <Routes>
@@ -181,6 +204,7 @@ function App() {
               <Route path="/artists/" element={<Artists />} />
               <Route path="/artist/:id" element={<Artist />} />
               <Route path="/editprofile/" element={<EditProfile />} />
+              <Route path="/users/:id" element={<UserPage />} />
               <Route path="/artist/:id/newalbum" element={<NewAlbum />} />
               <Route path="/post/:postid/edit" element={<EditPost />} />
               <Route path="/artist/:id/album/:id" element={<Album setAlbumInfo={setAlbumInfo}/>} />

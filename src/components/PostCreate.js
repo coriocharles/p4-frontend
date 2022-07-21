@@ -90,16 +90,15 @@ function NewPost({albumInfo}) {
 
     return (
         <>
-        write review for {albumid} by {artistid}
             <form onSubmit={handleSubmit}>
                 <Rating
                     id="rating"
                     name="rating"
                     value={newPost.rating}
                     onChange={handleChange}
-                />
-                <label htmlFor="title">Title</label>
-                <input type="text" id="title" onChange={handleChange} value={newPost.title} /><br></br>
+                /><br></br>
+                <label htmlFor="title" placeholder='title'></label>
+                <input type="text" id="title" placeholder='Title' onChange={handleChange} value={newPost.title} /><br></br>
                 <label htmlFor="content">Your Review</label><br></br>
                 <textarea rows="10" cols="50" type="text" id="content" onChange={handleChange} value={newPost.content} /><br></br>
                 <label htmlFor="status">Review Status</label><br></br>

@@ -4,7 +4,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 function EditProfile() {
-    const navigate = useNavigate()
+    let navigate = useNavigate()
     const userID = localStorage.getItem("id")
     const url = `http://localhost:8000/api/user/${userID}`
     const [user, setUser] = useState({
@@ -67,6 +67,7 @@ function EditProfile() {
             .then(res => {
                 if (res.ok) {
                     localStorage.setItem('user', user.user_name)
+                    navigate(`/`)
                     return res.json()
                 } else {
                     if (res.status === 400) {
@@ -78,6 +79,7 @@ function EditProfile() {
                 if (!data) {
                     console.log(`problem with network request: ${networkErrMsg}`)
                     localStorage.setItem('user', user.user_name)
+                    navigate(`/`)
                 } else {
 
                     console.log(data)

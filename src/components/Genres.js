@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Card, CardContent, CardMedia, Grid, Typography, Container } from '@mui/material'
 import axios from 'axios'
-
+import { CardActionArea } from '@mui/material'
 
 function Genres() {
     const [genres, setGenres] = useState(null)

@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../axios';
 import { useParams, Link } from 'react-router-dom'
-
+import { Container, Avatar, Button, CssBaseline, Grid, Typography, Rating, Box } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import { CardActionArea } from '@mui/material'
 const SearchAlbum = ({data}) => {
     const url = ''
     const search = 'search';
@@ -17,25 +22,64 @@ const SearchAlbum = ({data}) => {
 
     return (
         <>
-            <div>
+                
                 {!appState
                     ? "no data yet"
-                    : <div>
-                        <h1>Results</h1>
+                : <div style={{ margin: "auto", position: 'absolute', width: '100vw' }}>
+                        <h1>Album Results</h1>
+                    <div style={{ display: "flex" }}>
+                        
+                        
                         {appState.map(album => {
                             return (
-                                <div>
-                                    <Link to={`/artist/${album.artist_name}/album/${album.name}`}>{album.name} by {album.artist_name}</Link><br></br>
-                                    <img src={album.image} width="50" height="70" alt="broken" />
+                                <div style={{ display: "flex", margin: "auto", overflow: 'hidden' }}>
+                                    <Card style={{ padding: '30px', margin: '10px', height: '40vh', backgroundColor: '#1F1B24', color: 'white' }} sx={{ minWidth: 275 }}>
+                                        <CardMedia
+                                            component="img"
+                                            height="200"
+                                            image={`${album.image}`}
+                                            alt="green iguana"
+                                        />
+                                        <CardContent>
+                                            {album.genre.map(genre => {
+                                                return (
+                                                    <Typography sx={{ fontSize: 14 }} color="gray" gutterBottom>
+                                                        {genre.name}
+                                                    </Typography>
+                                                )
+                                            })}
+                                            <Typography variant="h5" component="div">
+                                                {album.name}
+                                            </Typography>
+                                            <Typography sx={{ fontSize: 14 }} color="gray" gutterBottom>
+                                                {album.posts.length} Reviews
+                                            </Typography>
+
+                                        </CardContent>
+                                        <CardActions>
+                                            <Typography sx={{ fontSize: 14 }} color="gray" gutterBottom>
+                                                {String(album.release).slice(0, 10)}
+                                            </Typography>
+                                            <Button size="small"><Link to={`/artist/${album.artist_name}/album/${album.name}`}>Link</Link></Button>
+                                            {album.genre.map(genre => {
+                                                return (
+                                                    <Typography sx={{ fontSize: 14 }} color="gray" gutterBottom>
+                                                        {genre}
+                                                    </Typography>
+                                                )
+                                            })}
+                                        </CardActions>
+                                    </Card><br></br>
+                                    <br></br>
+
+
                                 </div>
                             )
                         })
-                        }
-
+                            } 
+                    </div></div>
                         
-                    </div>
                 }
-            </div>
         </>
     );
 };

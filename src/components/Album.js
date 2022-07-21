@@ -1,11 +1,15 @@
 import React from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Card, CardContent, CardMedia, Grid, Typography, Container, Rating } from '@mui/material'
+import { Card, CardContent, CardMedia, Grid,Button, Typography, Container, Rating, Box } from '@mui/material'
 import axios from 'axios'
+import CardActions from '@mui/material/CardActions';
+import { CardActionArea } from '@mui/material'
 function Album({setAlbumInfo}) {
+    const navigate = useNavigate()
     const [album, setAlbum] = useState(null)
     const { id } = useParams()
+    const {post, setPost} = useState(null)
     const url = `http://localhost:8000/api/albums/${id}`
     function componentDidMount() {
         axios.get(url)
@@ -21,6 +25,8 @@ function Album({setAlbumInfo}) {
     useEffect(() =>
         componentDidMount(), [])
 
+
+
     const [networkErrMsg, setNetworkErrMsg] = useState(null)
 
     const [clientErrMsg, setClientErrMsg] = useState(null)
@@ -31,6 +37,40 @@ function Album({setAlbumInfo}) {
     }
 
     let token = localStorage.getItem('access_token')
+
+    const handleSubmitLike = (e) => {
+        let index = e.target.dataset.index
+        let data = album.posts[index]
+        data.likes.push(Number(localStorage.getItem('id')))
+        console.log(data)
+        fetch(`http://localhost:8000/api/posts/${e.target.id}`,
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }
+        )
+            .then(res => {
+                if (res.ok) {
+                    window.location.reload()
+                    return res.json()
+                } else {
+                    statusCodeToErr(res)
+                    return Promise.resolve(null)
+                }
+            })
+            .then(data => {
+                if (!data) {
+                    window.location.reload()
+                } else {
+                    console.log(data)
+                }
+            })
+    }
+
+    
     const handleSubmit = (e) => {
         let post_id = e.target.id
         e.preventDefault()
@@ -71,39 +111,94 @@ function Album({setAlbumInfo}) {
         <div>
             {!album
                 ? "no data yet"
-                : <div>
-                    <h1>{album.name} by <Link to={`/artist/${album.artist_name}`}>{album.artist_name}</Link></h1>
+                : <div style={{ display: "flex" }}>
+                    <div style={{ padding: '15px', width: "40vw", height: '70vh', margin: '0 auto',  backgroundColor: '#1F1B24', color: 'white' }}>
+                        <CardMedia
+                            component="img"
+                            height="400"
+                            width="300"
+                            image={`${album.image}`}
+                            alt="green iguana"
+                        />
+                        <Box sx={{ width: '100%', maxWidth: 750 }}>
+                            <Typography variant="h5" gutterBottom component="div">
+                                {album.name}
+                            </Typography>
+                    
                     <Rating
                         precision={0.5}
                         defaultValue={1}
                         name="simple-controlled"
                         value={album.avg_rating}
+                        readOnly
                         
                     />
-                    {album.posts.map(post => {
+                            <Typography sx={{ fontSize: 14 }} color="gray" gutterBottom>
+                                {album.genre.map(genre => {
+                                    return (<> {genre}</>)
+                                })}
+                            </Typography>
+                        </Box><br></br>
+                        {!localStorage.getItem('user')
+                            ? "Please Sign in to write a review!"
+                            : <Link to={`/album/${album.id}/${album.artist}/newreview`}>Write a review</Link>
+                        }
+                    </div>
+                    <Container component="main" maxWidth="xs" justify="center" alignItems="center" style={{marginleft:"50px", marginTop:"30px"}} >
+                    {album.posts.map((post, i) => {
                         return(
                             <div>
-                            <h1>{post.title} by {post.author_name}</h1>
-                            <p>{post.content}</p>
-                            <p>posting on {String(post.published).slice(0,10)}</p>
-                                {!localStorage.getItem('user')
-                                    ? ""
-                                    : `${post.author_name}` === localStorage.getItem('user').replace(/['"]+/g, '')
-                                        ? <div>
-                                            <Link to={`/post/${post.id}/edit`}>Edit</Link>
-                                            <button onClick={handleSubmit} id={post.id}>Delete</button>
-                                        </div>
-                                        : ""
+                                <Card style={{ backgroundColor: '#1F1B24', color: 'white' }}>
+                                
+                                <CardContent>
+                                    <Typography variant="h5" component="div">
+                                        {post.title} <br></br>
+                                    </Typography>
+                                        <Typography variant="h7" component="div" >
+                                            <Link to={`/users/${post.author}`}>{post.author_name}</Link>
+                                        </Typography>
+                                    
+                                        <Typography variant="body2">
+                                            {post.content}
+                                        </Typography>
+                                </CardContent>
+                                <CardActions>
+                                    <Typography sx={{ fontSize: 14 }} color="gray" gutterBottom>
+                                        Reviewed {String(post.published).slice(0, 10)}
+                                    </Typography>
+                                        {!post.likes.includes(Number(localStorage.getItem('id')))
+                                            ? <Typography sx={{ fontSize: 14 }} color="gray" gutterBottom>
+                                                {post.likes.length} Likes
+                                                <Button onClick={handleSubmitLike} color="success" id={post.id} size="small" data-index={i} >Like</Button>
+                                            </Typography>
+                                            : <Typography sx={{ fontSize: 14 }} color="gray" gutterBottom>
+                                                {post.likes.length} Likes
+                                                <Button  color="success" id={post.id} size="small" data-index={i} >Liked</Button>
+                                            </Typography>}
+                                        
+                                        
+                                        {!localStorage.getItem('user')
+                                            ? ""
+                                            : `${post.author_name}` === localStorage.getItem('user').replace(/['"]+/g, '')
+                                                ? <div>
+
+                                                    <Button onClick={handleSubmit} color="primary" id={post.id} size="small"><Link to={`/post/${post.id}/edit`}>Edit</Link></Button>
+                                                    <Button onClick={handleSubmit} color="error" id={post.id} size="small">Delete</Button>
+                                                </div>
+                                                : ""
                                         }
+                                </CardActions>
                                 
                                 
+                                
+                            </Card><br></br>
+                            <br></br>
                             </div>
                         )
                     })}
-                    {!localStorage.getItem('user')
-                    ? "Please Sign in to write a review!"
-                    :<Link to={`/album/${album.id}/${album.artist}/newreview`}>Write a review</Link>
-                    }
+                    </Container>
+                    
+                    
                     
                 </div>
                 

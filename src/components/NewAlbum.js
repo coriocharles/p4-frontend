@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import axiosInstance from '../axios'
 
 function NewAlbum() {
     const navigate = useNavigate()
@@ -102,7 +103,7 @@ function NewAlbum() {
                 <label htmlFor="name">name</label>
                 <input type="text" id="name" onChange={handleChange} value={album.name} /><br></br>
                 <input accept='image/*' id="post-image" onChange={handleChange} name='image' type='file'/>
-                <input type="submit" className="btn btn-danger" value="goodbye" /><br></br>
+                <input type="submit" className="btn btn-danger" value="Create" /><br></br>
                 {!genres
                     ? ""
                     : <>
