@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import Footer from './components/Footer';
 import Register from './components/register';
@@ -17,7 +17,7 @@ import EditProfile from './components/editProfile';
 import Homepage from './components/home';
 import { Route, Routes } from 'react-router-dom'
 import React from 'react'
-import { AppBar, Toolbar, Typography, Select, Link, Button, TextField } from '@mui/material'
+import { AppBar, Toolbar, Typography, Link, Button, } from '@mui/material'
 import {useState, useEffect} from 'react'
 import {Avatar} from '@mui/material';
 import { useNavigate } from 'react-router-dom';

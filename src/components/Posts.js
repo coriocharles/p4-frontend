@@ -1,7 +1,7 @@
 import React from 'react'
-import { useParams, Link } from 'react-router-dom'
+import {  Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Card, CardContent, CardMedia, Grid, Typography, Container } from '@mui/material'
+import { Card, CardContent, Grid, Typography, Container } from '@mui/material'
 
 
 const Posts = () => {

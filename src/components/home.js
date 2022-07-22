@@ -1,18 +1,15 @@
-import react from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-import { Container, Button, Typography } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import { useNavigate } from 'react-router-dom'
 import { CardActionArea } from '@mui/material'
 
 function Homepage() {
-    const navigate = useNavigate()
     const [rec, setRecs] = useState(null)
     const url = `http://localhost:8000/api/albums/recommended/${localStorage.getItem('id')}`
 

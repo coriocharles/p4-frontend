@@ -1,6 +1,6 @@
-import react from 'react'
+import React from 'react'
 import { useEffect, useState } from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 function EditPost() {
     const navigate = useNavigate()

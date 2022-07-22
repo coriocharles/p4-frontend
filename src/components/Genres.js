@@ -1,13 +1,11 @@
 import React from 'react'
-import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Card, CardContent, CardMedia, Grid, Typography, Container } from '@mui/material'
+import { Card, Typography, Container } from '@mui/material'
 import axios from 'axios'
 import { CardActionArea } from '@mui/material'
 
 function Genres() {
     const [genres, setGenres] = useState(null)
-    const { name } = useParams()
     const url = `http://localhost:8000/api/genres/`
     console.log(url)
     function componentDidMount() {

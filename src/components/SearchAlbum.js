@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../axios';
-import { useParams, Link } from 'react-router-dom'
-import { Container, Avatar, Button, CssBaseline, Grid, Typography, Rating, Box } from '@mui/material';
+import { Link } from 'react-router-dom'
+import { Button,  Typography,} from '@mui/material';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import { CardActionArea } from '@mui/material'
 const SearchAlbum = ({data}) => {
-    const url = ''
     const search = 'search';
     const [appState, setAppState] = useState(null);
     console.log(data)

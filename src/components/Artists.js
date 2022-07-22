@@ -1,12 +1,10 @@
 import React from 'react'
-import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Container, Avatar, Button, CssBaseline, Grid, Typography, Rating } from '@mui/material';
+import { Typography} from '@mui/material';
 import { CardActionArea } from '@mui/material'
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 
 function Artists() {

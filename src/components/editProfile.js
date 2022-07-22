@@ -1,6 +1,6 @@
-import react from 'react'
-import { useEffect, useState } from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import React from 'react'
+import { useState } from 'react'
+import {useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 function EditProfile() {
@@ -17,7 +17,7 @@ function EditProfile() {
     let token = localStorage.getItem('access_token')
 
     const handleChange = (event) => {
-        if ([event.target.name] == 'avatar') {
+        if ([event.target.name] === 'avatar') {
             setUserAvatar({
                 avatar: event.target.files
             })
@@ -26,23 +26,8 @@ function EditProfile() {
         console.log(user) }
     }
 
-    // function componentDidMount() {
-    //     axios.get(url)
-    //         .then(res => {
-    //             const data = res.data
-    //             setUser(data)
-    //         })
-    // }
-
-
-    // useEffect(() =>
-    //     componentDidMount(), [])
-
-
-
     const [networkErrMsg, setNetworkErrMsg] = useState(null)
 
-    const [clientErrMsg, setClientErrMsg] = useState(null)
 
     
     const handleSubmit = (e) => {
