@@ -17,7 +17,7 @@ import EditProfile from './components/editProfile';
 import Homepage from './components/home';
 import { Route, Routes } from 'react-router-dom'
 import React from 'react'
-import { AppBar, Toolbar, Typography, CssBaseline, Link, Button, BottomNavigation } from '@mui/material'
+import { AppBar, Toolbar, Typography, Select, Link, Button, TextField } from '@mui/material'
 import {useState, useEffect} from 'react'
 import {Avatar} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -28,6 +28,7 @@ import axios from 'axios';
 import GenreAlbums from './components/GenreAlbums';
 import Artists from './components/Artists';
 import UserPage from './components/User';
+
 function App() {
   const [avatar, setUserAvatar] = useState(null)
   const [userSignedIn, setUserSignedIn] = useState(null)
@@ -105,34 +106,26 @@ function App() {
             color="inherit"
             noWrap
           >
-            {/* <Link
-
-              href="/"
-              underline="none"
-              color="textPrimary"
-              style={{margin: '5px'}}
-            >
-              Home
-            </Link> */}
           </Typography>
-                <form onSubmit={handleSubmit} style={{ display: "flex" }}>
-            <input type="text" id="search" onChange={handleChange} value={data.search} /><br></br>
-            <select type="text" id="category" onChange={handleChange} value={data.category}>
-              <option value="artists">Artist</option>
-              <option value="albums">Album</option>
-              <option value="genres">Genre</option>
+                <form onSubmit={handleSubmit} style={{ display: "flex" }} >
+                <input type="text" id="search" onChange={handleChange} value={data.search} style={{ backgroundColor: "#121212", color: 'white' }} /><br></br>
+                <select type="text" id="category" onChange={handleChange} style={{
+                  backgroundColor: "#121212", color: 'white', }} value={data.category} >
+                  <option value="artists" style={{ backgroundColor: "#121212", color: 'white' }}>Artist</option>
+                  <option value="albums" style={{ backgroundColor: "#121212", color: 'white' }}>Album</option>
+                  <option value="genres" style={{ backgroundColor: "#121212", color: 'white' }}>Genre</option>
             </select>
-            <input type="submit" className="btn btn-danger" value="search" />
+                <input type="submit" className="btn btn-danger" value="search" style={{ backgroundColor: "#121212", color: 'white' }} />
           </form>
           </div>
             <div style={{ display: 'flex', float: 'center', width: '35vw', backgroundcolor: "#2b2b2b", textAlign: 'right'}}>
-              <Button style={{margin: '0 auto'}}
+              <Button style={{margin: '0 auto', color: 'white'}}
                 href={`/artists`}
                 color="secondary"
                 to={`/artists`}
               >Artists</Button>
                 <Button
-                style={{ margin: '0 auto' }}
+                style={{ margin: '0 auto', color: 'white' }}
                 href={`/genres`}
                   color="secondary"
                   to={`/genres`}
@@ -162,6 +155,7 @@ function App() {
             </>
 
             : <div style={{display: 'flex'}}>
+              
                   <nav style={{ margin: '10px' }}>
                 <Link
                   color="textPrimary"

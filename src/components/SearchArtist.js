@@ -32,7 +32,7 @@ const SearchArtist = ({data}) => {
                             return (
                                 <div style={{ display: "flex", margin: "auto", overflow: 'hidden' }}>
 
-                                    <Card sx={{ minWidth: 275 }}>
+                                    <Card style={{ padding: '30px', margin: '10px', height: '30vh', backgroundColor: '#1F1B24', color: 'white' }} sx={{ minWidth: 275 }}>
 
                                         <CardActionArea href={`/artist/${artist.name}`}>
                                         <CardMedia
@@ -50,10 +50,7 @@ const SearchArtist = ({data}) => {
                                             </Typography>
 
                                         </CardContent>
-                                        <CardActions>
-                                            <Button size="small"><Link to={`/artist/${artist.name}`}>Link</Link></Button>
-
-                                        </CardActions>
+                                       
                                         </CardActionArea>
                                     </Card><br></br>
                                     <br></br>

@@ -33,7 +33,8 @@ const SearchAlbum = ({data}) => {
                         {appState.map(album => {
                             return (
                                 <div style={{ display: "flex", margin: "auto", overflow: 'hidden' }}>
-                                    <Card style={{ padding: '30px', margin: '10px', height: '40vh', backgroundColor: '#1F1B24', color: 'white' }} sx={{ minWidth: 275 }}>
+                                    <Card style={{ padding: '30px', margin: '10px', height: '50vh', backgroundColor: '#1F1B24', color: 'white' }} sx={{ minWidth: 275 }}>
+                                        <CardActionArea href={`/artist/${album.artist_name}/album/${album.name}`}>
                                         <CardMedia
                                             component="img"
                                             height="200"
@@ -69,6 +70,7 @@ const SearchAlbum = ({data}) => {
                                                 )
                                             })}
                                         </CardActions>
+                                        </CardActionArea>
                                     </Card><br></br>
                                     <br></br>
 

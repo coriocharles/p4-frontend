@@ -68,7 +68,7 @@ export default function Login({ setUserSignedIn, setUserAvatar}) {
 
 
     return (
-        <Container component="main" maxWidth="xs" justify="center" alignItems="center">
+        <Container component="main" maxWidth="xs" justify="center" alignItems="center" style={{ backgroundColor: '#1F1B24', color: 'white', minHeight: '50vh' }}>
             <CssBaseline />
             <div>
                 
@@ -79,7 +79,7 @@ export default function Login({ setUserSignedIn, setUserAvatar}) {
                     direction="column"
                     alignItems="center"
                     justifyContent="center"
-                    style={{ minHeight: '6vh' }}
+                    style={{ minHeight: '10vh' }}
                 >
 
                     <Grid item xs={3}>
@@ -90,11 +90,13 @@ export default function Login({ setUserSignedIn, setUserAvatar}) {
                 </Grid> 
                 <Typography component="h1" variant="h5">
                     Sign in
-                </Typography>
-                <form noValidate>
+                </Typography >
+                <form noValidate >
                     <TextField
                         variant="outlined"
                         margin="normal"
+                        inputProps={{ style: { backgroundColor: '#121212', color: 'white' } }}
+                        InputLabelProps={{ style: { color: 'white' } }}
                         required
                         fullWidth
                         id="user_name"
@@ -109,6 +111,9 @@ export default function Login({ setUserSignedIn, setUserAvatar}) {
                         margin="normal"
                         required
                         fullWidth
+                        inputProps={{ style: { backgroundColor: '#121212', color: 'white' } }}
+                        InputLabelProps={{ style: { color: 'white', } }}
+
                         name="password"
                         label="Password"
                         type="password"

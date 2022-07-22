@@ -96,6 +96,7 @@ function NewPost({albumInfo}) {
                     name="rating"
                     value={newPost.rating}
                     onChange={handleChange}
+                    style={{ backgroundColor:"#1F1B24"}}
                 /><br></br>
                 <label htmlFor="title" placeholder='title'></label>
                 <input type="text" id="title" placeholder='Title' onChange={handleChange} value={newPost.title} /><br></br>

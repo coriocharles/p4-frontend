@@ -27,10 +27,7 @@ function Artist(){
     useEffect(() =>
         componentDidMount(), [])
 
-    function move(event) {
-        event.preventDefault()
-        navigate(`/artist/${artist.name}/newalbum`)
-    }
+    
     
 
     return(
@@ -60,13 +57,7 @@ function Artist(){
                     </Box><br></br>
                         {!localStorage.getItem('user')
                             ? "Please Sign in to add an album"
-                            : <Button
-                                type="submit"
-                                variant="contained"
-                                color="primary"
-                                onClick={move}
-                            >
-                                Add a new album </Button>
+                            : <Link to={`/artist/${artist.name}/newalbum`} style={{color:'gray'}}>Add Album</Link>
                         }
                     </div>
                     <Container component="main" maxWidth="xs" justify="center" alignItems="center">
@@ -93,7 +84,7 @@ function Artist(){
                                                         {album.name}
                                                     </Typography>
                                                     <Typography sx={{ fontSize: 14 }} color="gray" gutterBottom>
-                                                        {album.posts.length} Reviews
+                                                        {album.postlength} Reviews
                                                     </Typography>
                                                     
                                                 </CardContent>

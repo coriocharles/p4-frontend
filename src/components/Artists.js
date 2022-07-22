@@ -37,7 +37,7 @@ function Artists() {
                         return (
                             <div style={{ display: "flex", margin: "auto", overflow: 'hidden',width:'100vw' }}>
                                 
-                                <Card style={{ padding: '30px', margin: '10px', width: '23vw', height: '40vh', backgroundColor: '#1F1B24', color: 'white'  }}>
+                                <Card style={{ padding: '30px', margin: '10px', width: '23vw', height: '30vh', backgroundColor: '#1F1B24', color: 'white'  }}>
                                     <CardActionArea href={`/artist/${artist.name}`}>
                                     <CardMedia
                                         component="img"
