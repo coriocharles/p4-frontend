@@ -1,6 +1,8 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { Container, Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Typography } from '@mui/material';
+
 function NewAlbum() {
     const navigate = useNavigate()
     const url = 'http://localhost:8000/api/albums/create'
@@ -96,29 +98,46 @@ function NewAlbum() {
 
     return (
         <>
+            <Container component="main" maxWidth="xs" justify="center" alignItems="center" style={{ backgroundColor: '#1F1B24', color: 'white', minHeight: '50vh' }}>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="name">name</label>
-                <input type="text" id="name" onChange={handleChange} value={album.name} /><br></br>
-                <input accept='image/*' id="post-image" onChange={handleChange} name='image' type='file'/>
-                <input type="submit" className="btn btn-danger" value="Create" /><br></br>
+                <br></br>
+                    <Typography component="h1" variant="h5">
+                        Add Album
+                    </Typography >
+                <TextField 
+                inputProps={{ style: { backgroundColor: '#121212', color: 'white' } }}
+                InputLabelProps={{ style: { color: 'white' } }}
+                type="text" 
+                id="name" 
+                        label="Name"
+                onChange={handleChange} 
+                value={album.name} 
+                        variant="outlined"
+                        margin="normal"
+                /><br></br>
+                    <input style={{ backgroundColor: '#121212', color: 'white' }} accept='image/*' id="post-image" onChange={handleChange} name='image' type='file'/><br></br><br></br>
+                
                 {!genres
                     ? ""
                     : <>
-                        Select the related genres!
                         <select
                             multiple
                             onChange={handleChange2}
                             value={album.genre}
                         >
                             {genres.map(genre => (
-                                <option value={genre.name}>{genre.name}</option>
+                                <option style={{ backgroundColor: '#121212', color: 'white' }} value={genre.name}>{genre.name}</option>
                             ))}
                         </select>
                         
                     </>
-                }
+                
+                }<br></br>
+                    <Button type="submit" className="btn btn-danger" value="Create" >Create</Button><br></br>
             </form>
+            </Container>
         </>
+        
     )
 }
 

@@ -17,7 +17,7 @@ function EditProfile() {
     let token = localStorage.getItem('access_token')
 
     const handleChange = (event) => {
-        if ([event.target.name] === 'avatar') {
+        if ([event.target.name] == 'avatar') {
             setUserAvatar({
                 avatar: event.target.files
             })
@@ -52,6 +52,7 @@ function EditProfile() {
             .then(res => {
                 if (res.ok) {
                     localStorage.setItem('user', user.user_name)
+                    window.location.reload()
                     navigate(`/`)
                     return res.json()
                 } else {
@@ -63,6 +64,7 @@ function EditProfile() {
             .then(data => {
                 if (!data) {
                     console.log(`problem with network request: ${networkErrMsg}`)
+                    window.location.reload()
                     localStorage.setItem('user', user.user_name)
                     navigate(`/`)
                 } else {

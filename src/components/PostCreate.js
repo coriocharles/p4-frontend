@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Rating } from '@mui/material'
+import { Container, Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Typography } from '@mui/material';
+
 function NewPost({albumInfo}) {
     let navigate = useNavigate()
     const url = 'http://localhost:8000/api/posts/'
@@ -88,25 +90,32 @@ function NewPost({albumInfo}) {
 
     return (
         <>
+            <Container component="main" maxWidth="xs" justify="center" alignItems="center" style={{ backgroundColor: '#1F1B24', color: 'white', minHeight: '50vh' }}>
             <form onSubmit={handleSubmit}>
+                <br>
+                </br>
+                    <Typography component="h1" variant="h5">
+                        Add Review
+                    </Typography >
                 <Rating
                     id="rating"
                     name="rating"
                     value={newPost.rating}
                     onChange={handleChange}
-                    style={{ backgroundColor:"#1F1B24"}}
+                        style={{ backgroundColor:"#121212"}}
                 /><br></br>
-                <label htmlFor="title" placeholder='title'></label>
-                <input type="text" id="title" placeholder='Title' onChange={handleChange} value={newPost.title} /><br></br>
-                <label htmlFor="content">Your Review</label><br></br>
-                <textarea rows="10" cols="50" type="text" id="content" onChange={handleChange} value={newPost.content} /><br></br>
-                <label htmlFor="status">Review Status</label><br></br>
+                    <TextField inputProps={{ style: { backgroundColor: '#121212', color: 'white' } }}
+                        InputLabelProps={{ style: { color: 'white' } }}type="text" id="title" placeholder='Title' onChange={handleChange} value={newPost.title} /><br></br><br></br>
+                
+                    <textarea style={{ backgroundColor: '#121212', color: 'white' }}rows="10" cols="50" type="text" id="content" onChange={handleChange} value={newPost.content} /><br></br>
+                
                 <select type="text" id="status" onChange={handleChange} value={newPost.status}>
                     <option value="draft">Draft</option>
                     <option value="published">Publish</option>
                 </select>
                 <input type="submit" className="btn btn-danger" value="hello" />
             </form>
+            </Container>
         </>
     )
 }
