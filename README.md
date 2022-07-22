@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# Tune
+## Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An app that will allow users to log-in using JWT, have a custom user profile, and be able to use the music review platform.  Users can add artists, albums, genres, and reviews on albums with full CRUD.  A recommended page exists that reads the logged-in user's preferences and serves an album up as a recommendation.  This is accomplished utilizing django querying in the views and serializers.  This app has a robust back-end with a reg-ex search feature, many-to-many relationships, and data refinement to send only as much data as necessary.
 
-## Available Scripts
 
-In the project directory, you can run:
+## Technologies used:
+- Python
+- Django
+- React
+- JavaScript
+- Fetch & Axios
+- React MUI
 
-### `npm start`
+## Wireframes
+![p3wireframe](https://user-images.githubusercontent.com/97096664/171978202-4a32b6bf-d62a-481d-8402-e337e3174db5.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Links
+[GitHub Repository, Front-end](https://github.com/coriocharles/P3-frontend)
 
-### `npm test`
+[GitHub Repository, Back-end](https://github.com/danianise/p3-backend)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Screen Captures
+### Portfolio
+<img width="1440" alt="Screen Shot 2022-06-03 at 11 27 09 PM" src="https://user-images.githubusercontent.com/97096664/171978780-d75e4f60-3341-4681-8622-e5b059556464.png">
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Stock Info
+<img width="1439" alt="Screen Shot 2022-06-03 at 11 29 20 PM" src="https://user-images.githubusercontent.com/97096664/171979015-934333d6-0f2c-4bcc-9de6-7c21534cd5ee.png">
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Watchlist
+![Recording 2022-06-04 at 14 42 43](https://user-images.githubusercontent.com/97096664/172021295-14a63925-e59c-4119-a39b-637552edb8a8.gif)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### Search by Stock Symbol
+![Recording 2022-06-04 at 00 07 30](https://user-images.githubusercontent.com/97096664/171981804-74136122-34f0-431f-b820-0e09065ad41f.gif)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Buy/Sell Stock
+![Recording 2022-06-04 at 00 05 13](https://user-images.githubusercontent.com/97096664/171981764-315380d2-faba-49fe-9901-ebee220844de.gif)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## User Stories
+### MVP Goals
+- As a user, I would like add albums, artists, genres and reviews.
+- As a user, I would like to be able to register / log in with JWT.
+- As a user, I want to be able to search for all objects.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Stretch Goals
+- As a user, I would like albums to be recommended to me.
+- As a user, I would like to 'like' other peoples posts and have it update live.  
+- As a user, I would like to be able to upload a profile picture.
+ 
+## Hurdles
+- MUI dependencies (styling will always be my downfall)
