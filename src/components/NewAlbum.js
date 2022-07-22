@@ -23,7 +23,6 @@ function NewAlbum() {
             .then(res => {
                 const data = res.data
                 setGenres(data)
-                console.log(data)
             })
 
     }
@@ -32,7 +31,7 @@ function NewAlbum() {
         componentDidMount(), [])
 
     const handleChange = (event) => {
-        if ([event.target.name] === 'image') {
+        if ([event.target.name] == 'image') {
             setPostImage({
                 image: event.target.files,
             });
@@ -44,7 +43,6 @@ function NewAlbum() {
 
     const handleChange2= (event) =>  {
         setGenreInput((prevstate) => ({ genre: prevstate.genre.concat([event.target.value])}))
-        console.log(genreInput)
     }
     
     const handleSubmit = (e) => {
@@ -52,6 +50,7 @@ function NewAlbum() {
         let formData = new FormData();
         let uniq = Array.from([...new Set(genreInput.genre)]);
         console.log(uniq)
+        console.log(postimage)
         formData.append('genre', genreInput.genre)
         formData.append('name', album.name);
         formData.append('artist', album.artist)

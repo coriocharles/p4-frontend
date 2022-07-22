@@ -183,7 +183,7 @@ function Album({setAlbumInfo}) {
                                         
                                         {!localStorage.getItem('user')
                                             ? ""
-                                            : `${post.author_name}` === localStorage.getItem('user').replace(/['"]+/g, '')
+                                            : `${post.author_name}` == localStorage.getItem('user').replace(/['"]+/g, '')
                                                 ? <div>
 
                                                     <Button onClick={handleSubmit} color="primary" id={post.id} size="small"><Link to={`/post/${post.id}/edit`}>Edit</Link></Button>
