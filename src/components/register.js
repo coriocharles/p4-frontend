@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axiosInstance from '../axios';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import {Container, Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Typography} from '@mui/material';
@@ -51,7 +50,7 @@ export default function Register() {
 
 
     return (
-        <Container component="main" maxWidth="xs" justify="center" alignItems="center">
+        <Container component="main" maxWidth="xs" justify="center" alignItems="center" style={{ backgroundColor: '#1F1B24', color: 'white', minHeight: '50vh' }}>
             <CssBaseline />
             <div>
                 <Grid
@@ -79,6 +78,8 @@ export default function Register() {
                                 variant="outlined"
                                 required
                                 fullWidth
+                                InputProps={{ style: { backgroundColor: '#121212', color: 'white' } }}
+                                InputLabelProps={{ style: { color: 'white' } }}
                                 id="email"
                                 label="Email Address"
                                 name="email"
@@ -91,6 +92,8 @@ export default function Register() {
                                 variant="outlined"
                                 required
                                 fullWidth
+                                InputProps={{ style: { backgroundColor: '#121212', color: 'white' } }}
+                                InputLabelProps={{ style: { color: 'white' } }}
                                 id="username"
                                 label="Username"
                                 name="username"
@@ -103,6 +106,8 @@ export default function Register() {
                                 variant="outlined"
                                 required
                                 fullWidth
+                                InputProps={{ style: { backgroundColor: '#121212', color: 'white' } }}
+                                InputLabelProps={{ style: { color: 'white' } }}
                                 name="password"
                                 label="Password"
                                 type="password"
@@ -119,6 +124,7 @@ export default function Register() {
                         </Grid>
                     </Grid>
                     <Button
+                        
                         type="submit"
                         fullWidth
                         variant="contained"

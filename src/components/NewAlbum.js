@@ -1,8 +1,6 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import axiosInstance from '../axios'
-
 function NewAlbum() {
     const navigate = useNavigate()
     const url = 'http://localhost:8000/api/albums/create'
@@ -34,7 +32,7 @@ function NewAlbum() {
         componentDidMount(), [])
 
     const handleChange = (event) => {
-        if ([event.target.name] == 'image') {
+        if ([event.target.name] === 'image') {
             setPostImage({
                 image: event.target.files,
             });

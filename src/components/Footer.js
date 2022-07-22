@@ -7,7 +7,7 @@ import Link from '@mui/material/Link';
 
 function Copyright() {
     return (
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="gray">
             {'Copyright © '}
             <Link color="inherit" href="https://mui.com/">
                 Charlie Corio
@@ -24,7 +24,7 @@ export default function Footer() {
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                minHeight: '100vh',
+                minHeight: '90vh',
             }}
         >
             <CssBaseline />
@@ -35,10 +35,7 @@ export default function Footer() {
                     py: 3,
                     px: 2,
                     mt: 'auto',
-                    backgroundColor: (theme) =>
-                        theme.palette.mode === 'light'
-                            ? theme.palette.grey[200]
-                            : theme.palette.grey[800],
+                    backgroundColor: "#1F1B24"
                 }}
             >
                 <Container maxWidth="sm">

@@ -1,12 +1,10 @@
 import React from 'react'
-import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Container, Avatar, Button, CssBaseline, Grid, Typography, Rating } from '@mui/material';
+import { Typography} from '@mui/material';
 import { CardActionArea } from '@mui/material'
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 
 function Artists() {
@@ -37,7 +35,7 @@ function Artists() {
                         return (
                             <div style={{ display: "flex", margin: "auto", overflow: 'hidden',width:'100vw' }}>
                                 
-                                <Card style={{ padding: '30px', margin: '10px', width: '23vw', height: '40vh', backgroundColor: '#1F1B24', color: 'white'  }}>
+                                <Card style={{ padding: '30px', margin: '10px', width: '23vw', height: '30vh', backgroundColor: '#1F1B24', color: 'white'  }}>
                                     <CardActionArea href={`/artist/${artist.name}`}>
                                     <CardMedia
                                         component="img"

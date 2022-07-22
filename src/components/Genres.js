@@ -1,13 +1,11 @@
 import React from 'react'
-import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Card, CardContent, CardMedia, Grid, Typography, Container } from '@mui/material'
+import { Card, Typography, Container } from '@mui/material'
 import axios from 'axios'
 import { CardActionArea } from '@mui/material'
 
 function Genres() {
     const [genres, setGenres] = useState(null)
-    const { name } = useParams()
     const url = `http://localhost:8000/api/genres/`
     console.log(url)
     function componentDidMount() {
@@ -25,19 +23,31 @@ function Genres() {
 
     return (
         <div>
+            
             {!genres
                 ? "no data yet"
                 : <div>
-                    <h1>List of genres</h1>
+                    <h1>Genres</h1>
+                    <Container component="main" maxWidth="xs" justify="center" alignItems="center">
                     {genres.map(genre => {
                         return (
                             <div>
-                                <br></br>
-                                <Link to={`/genres/${genre.name}`}>{genre.name}</Link>
+                                <CardActionArea href={`/genres/${genre.name}`}>
+                            <Card style={{ backgroundColor: '#1F1B24', color: 'white', height:'5vh'}}>
+                                   
+                                        <Typography sx={{ fontSize: 14 }} color="gray" gutterBottom>
+                                            {genre.name}
+                                        </Typography>
+                                    
+                                            </Card>
+                                    </CardActionArea>
+                            <br></br>
+                                
+    
                             </div>
                         )
                     })
-                    }
+                        }</Container>
                 </div>
             }
         </div>

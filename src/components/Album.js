@@ -1,15 +1,13 @@
 import React from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, Link} from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Card, CardContent, CardMedia, Grid,Button, Typography, Container, Rating, Box } from '@mui/material'
+import { Card, CardContent, CardMedia,Button, Typography, Container, Rating, Box } from '@mui/material'
 import axios from 'axios'
 import CardActions from '@mui/material/CardActions';
 import { CardActionArea } from '@mui/material'
 function Album({setAlbumInfo}) {
-    const navigate = useNavigate()
     const [album, setAlbum] = useState(null)
     const { id } = useParams()
-    const {post, setPost} = useState(null)
     const url = `http://localhost:8000/api/albums/${id}`
     function componentDidMount() {
         axios.get(url)
@@ -29,7 +27,6 @@ function Album({setAlbumInfo}) {
 
     const [networkErrMsg, setNetworkErrMsg] = useState(null)
 
-    const [clientErrMsg, setClientErrMsg] = useState(null)
 
     const statusCodeToErr = (responseObj) => {
         setNetworkErrMsg(`Network Error of code: ${responseObj.status}`)
@@ -112,10 +109,10 @@ function Album({setAlbumInfo}) {
             {!album
                 ? "no data yet"
                 : <div style={{ display: "flex" }}>
-                    <div style={{ padding: '15px', width: "40vw", height: '70vh', margin: '0 auto',  backgroundColor: '#1F1B24', color: 'white' }}>
+                    <div style={{ padding: '15px', width: "40vw", height: '70vh', margin: '0 auto',   }}>
                         <CardMedia
                             component="img"
-                            height="400"
+                            height="600"
                             width="300"
                             image={`${album.image}`}
                             alt="green iguana"
@@ -124,7 +121,14 @@ function Album({setAlbumInfo}) {
                             <Typography variant="h5" gutterBottom component="div">
                                 {album.name}
                             </Typography>
-                    
+                            <CardActionArea href={`/artist/${album.artist_name}/`}>
+                            <Typography variant="h7" gutterBottom component="div">
+                                by {album.artist_name}
+                            </Typography>
+                            </CardActionArea>
+                            <Typography sx={{ fontSize: 14 }} color="gray">
+                                {album.release}
+                            </Typography>
                     <Rating
                         precision={0.5}
                         defaultValue={1}
@@ -141,7 +145,7 @@ function Album({setAlbumInfo}) {
                         </Box><br></br>
                         {!localStorage.getItem('user')
                             ? "Please Sign in to write a review!"
-                            : <Link to={`/album/${album.id}/${album.artist}/newreview`}>Write a review</Link>
+                            : <Link to={`/album/${album.id}/${album.artist}/newreview`} style={{ color: 'gray' }}>Write a review</Link>
                         }
                     </div>
                     <Container component="main" maxWidth="xs" justify="center" alignItems="center" style={{marginleft:"50px", marginTop:"30px"}} >
@@ -172,7 +176,7 @@ function Album({setAlbumInfo}) {
                                                 <Button onClick={handleSubmitLike} color="success" id={post.id} size="small" data-index={i} >Like</Button>
                                             </Typography>
                                             : <Typography sx={{ fontSize: 14 }} color="gray" gutterBottom>
-                                                {post.likes.length} Likes
+                                                {post.likes.length} Liked
                                                 <Button  color="success" id={post.id} size="small" data-index={i} >Liked</Button>
                                             </Typography>}
                                         

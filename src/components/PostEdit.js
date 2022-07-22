@@ -1,6 +1,6 @@
-import react from 'react'
+import React from 'react'
 import { useEffect, useState } from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 function EditPost() {
     const navigate = useNavigate()
@@ -85,11 +85,10 @@ function EditPost() {
         <div>
             {!post
             ?"loading"
-                : <>write review for {post.album} by {post.artist}
+                : <>Edit Review for {post.album_name} by {post.artist_name}
             <form onSubmit={handleSubmit}>
                 <label htmlFor="title">Title</label>
                 <input type="text" id="title" onChange={handleChange} value={post.title} placeholder={post.title}/><br></br>
-                <label htmlFor="content">Your Review</label><br></br>
                 <textarea rows="10" cols="50" type="text" id="content" onChange={handleChange} value={post.content} placeholder={post.content}/><br></br>
                 <label htmlFor="status">Review Status</label><br></br>
                 <select type="text" id="status" onChange={handleChange} value={post.status}>

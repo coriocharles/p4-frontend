@@ -1,12 +1,10 @@
 import React, {useState} from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
 
 function NewArtist() {
     const url = 'http://localhost:8000/api/artists/'
     const [artist, setArtist] = useState({
         name: ''
     })
-    let navigate = useNavigate()
     let token = localStorage.getItem('access_token')
     const handleChange = (event) => {
         setArtist({...artist, [event.target.id]: event.target.value })

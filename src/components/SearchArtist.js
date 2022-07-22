@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../axios';
-import { useParams, Link, useNavigate } from 'react-router-dom'
-import { Container, Avatar, Button, CssBaseline, Grid, Typography, Rating } from '@mui/material';
+import { Typography } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import { CardActionArea } from '@mui/material'
+
 const SearchArtist = ({data}) => {
-    const url = ''
     const search = 'search';
     const [appState, setAppState] = useState(null);
     console.log(data)
@@ -32,7 +30,7 @@ const SearchArtist = ({data}) => {
                             return (
                                 <div style={{ display: "flex", margin: "auto", overflow: 'hidden' }}>
 
-                                    <Card sx={{ minWidth: 275 }}>
+                                    <Card style={{ padding: '30px', margin: '10px', height: '30vh', backgroundColor: '#1F1B24', color: 'white' }} sx={{ minWidth: 275 }}>
 
                                         <CardActionArea href={`/artist/${artist.name}`}>
                                         <CardMedia
@@ -50,10 +48,7 @@ const SearchArtist = ({data}) => {
                                             </Typography>
 
                                         </CardContent>
-                                        <CardActions>
-                                            <Button size="small"><Link to={`/artist/${artist.name}`}>Link</Link></Button>
-
-                                        </CardActions>
+                                       
                                         </CardActionArea>
                                     </Card><br></br>
                                     <br></br>

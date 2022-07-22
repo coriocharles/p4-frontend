@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../axios';
-import { useParams, Link } from 'react-router-dom'
-import { Container, Avatar, Button, CssBaseline, Grid, Typography, Rating, Box } from '@mui/material';
+import { Link } from 'react-router-dom'
+import { Button,  Typography,} from '@mui/material';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import { CardActionArea } from '@mui/material'
 const SearchAlbum = ({data}) => {
-    const url = ''
     const search = 'search';
     const [appState, setAppState] = useState(null);
     console.log(data)
@@ -33,7 +32,8 @@ const SearchAlbum = ({data}) => {
                         {appState.map(album => {
                             return (
                                 <div style={{ display: "flex", margin: "auto", overflow: 'hidden' }}>
-                                    <Card style={{ padding: '30px', margin: '10px', height: '40vh', backgroundColor: '#1F1B24', color: 'white' }} sx={{ minWidth: 275 }}>
+                                    <Card style={{ padding: '30px', margin: '10px', height: '50vh', backgroundColor: '#1F1B24', color: 'white' }} sx={{ minWidth: 275 }}>
+                                        <CardActionArea href={`/artist/${album.artist_name}/album/${album.name}`}>
                                         <CardMedia
                                             component="img"
                                             height="200"
@@ -69,6 +69,7 @@ const SearchAlbum = ({data}) => {
                                                 )
                                             })}
                                         </CardActions>
+                                        </CardActionArea>
                                     </Card><br></br>
                                     <br></br>
 

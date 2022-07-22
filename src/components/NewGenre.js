@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
 
 function NewGenre() {
     const url = 'http://localhost:8000/api/genres/'
     const [genre, setGenre] = useState({
         name: ''
     })
-    let navigate = useNavigate()
     let token = localStorage.getItem('access_token')
     const handleChange = (event) => {
         setGenre({ ...genre, [event.target.id]: event.target.value })

@@ -1,8 +1,8 @@
 import React from 'react'
-import { useParams, Link, Navigate, useNavigate } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Container, Avatar, Button, CssBaseline, Grid, Typography, Rating, Box } from '@mui/material';
+import { Container, Typography,  Box } from '@mui/material';
 import { CardActionArea } from '@mui/material'
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
@@ -10,7 +10,6 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 
 function Artist(){
-    let navigate = useNavigate()
     const [artist, setArtist] = useState(null)
     const {id} = useParams() 
     const url = `http://localhost:8000/api/artists/${id}`
@@ -27,10 +26,7 @@ function Artist(){
     useEffect(() =>
         componentDidMount(), [])
 
-    function move(event) {
-        event.preventDefault()
-        navigate(`/artist/${artist.name}/newalbum`)
-    }
+    
     
 
     return(
@@ -60,13 +56,7 @@ function Artist(){
                     </Box><br></br>
                         {!localStorage.getItem('user')
                             ? "Please Sign in to add an album"
-                            : <Button
-                                type="submit"
-                                variant="contained"
-                                color="primary"
-                                onClick={move}
-                            >
-                                Add a new album </Button>
+                            : <Link to={`/artist/${artist.name}/newalbum`} style={{color:'gray'}}>Add Album</Link>
                         }
                     </div>
                     <Container component="main" maxWidth="xs" justify="center" alignItems="center">
@@ -93,7 +83,7 @@ function Artist(){
                                                         {album.name}
                                                     </Typography>
                                                     <Typography sx={{ fontSize: 14 }} color="gray" gutterBottom>
-                                                        {album.posts.length} Reviews
+                                                        {album.postlength} Reviews
                                                     </Typography>
                                                     
                                                 </CardContent>

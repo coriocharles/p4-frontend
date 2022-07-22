@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import axiosInstance from '../axios'
 import { Rating } from '@mui/material'
 function NewPost({albumInfo}) {
     let navigate = useNavigate()
@@ -25,10 +24,9 @@ function NewPost({albumInfo}) {
         console.log(newPost)
     }
 
-    console.log(Number(localStorage.getItem('id')) == 13)
+    console.log(Number(localStorage.getItem('id')) === 13)
     
     const [networkErrMsg, setNetworkErrMsg] = useState(null)
-
     const [clientErrMsg, setClientErrMsg] = useState(null)
 
     const statusCodeToErr = (responseObj) => {
@@ -96,6 +94,7 @@ function NewPost({albumInfo}) {
                     name="rating"
                     value={newPost.rating}
                     onChange={handleChange}
+                    style={{ backgroundColor:"#1F1B24"}}
                 /><br></br>
                 <label htmlFor="title" placeholder='title'></label>
                 <input type="text" id="title" placeholder='Title' onChange={handleChange} value={newPost.title} /><br></br>
